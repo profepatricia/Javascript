@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejemplo formulario</title>
+<style>
+#tipocanvas{
+   width: 300px;
+   height: 300px;
+   border-radius: 30%;
+   border: 2px solid;
+}
+</style>
+</head>
+<body>
+   <div>
+    <h1>Elegir un color
+    </h1>
+    <form>
+        <input type="radio" id="rojo" name="color" value="rojo">
+        <label for="rojo">Rojo</label><br>
+        <input type="radio" id="azul" name="color" value="azul">
+        <label for="azul">Azul</label><br>
+        <input type="radio" id="verde" name="color" value="verde">
+        <label for="verde">Verde</label>
+      
+        <br>  
+      </form>
+
+      <canvas id="tipocanvas"></canvas>
+   </div> 
+<script>
+window.onload=CargarBoton;
+
+function CargarBoton(){
+   let rojo = document.getElementById("rojo");
+   let verde = document.getElementById("verde");
+   let azul = document.getElementById("azul");
+   rojo.onclick = CargarEventoColorRojo;
+   verde.onclick = CargarEventoColorVerde;
+   azul.onclick = CargarEventoColorAzul;
+}
+
+function CargarEventoColorRojo(){
+   CargarEventoColor("rojo", "red");
+}
+
+function CargarEventoColorAzul(){
+   CargarEventoColor("azul", "blue");
+}
+
+function CargarEventoColorVerde(){
+   CargarEventoColor("verde", "green");
+}
+
+function CargarEventoColor(id, color){
+   let radiobutton = document.getElementById(id);
+   if(radiobutton.checked == false)
+   {    
+      return;
+   }
+   let c = document.getElementById("tipocanvas");
+   var ctx = c.getContext("2d");
+   ctx.beginPath();
+   ctx.rect(0, 0, 300, 300);
+   ctx.fillStyle = color;
+   ctx.fill();
+}
+</script>
+</body>
+</html>
